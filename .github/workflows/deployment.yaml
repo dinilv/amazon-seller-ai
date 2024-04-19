@@ -63,7 +63,6 @@ jobs:
 
       - name: Deploy to GAE
         run: |
-          gcloud config configure --project ${{ secrets.GOOGLE_PROJET_ID }}
           echo "gcloud app deploy --image-url=us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJET_ID }}/amazon_seller_ai:latest"
 
     
