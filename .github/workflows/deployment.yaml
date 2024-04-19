@@ -63,6 +63,11 @@ jobs:
 
       - name: Deploy to GAE
         run: |
-          echo "gcloud app deploy --image-url=us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJET_ID }}/amazon_seller_ai:latest"
+          gcloud app deploy --image-url=us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/amazon_seller_ai:latest
+          # Check the exit code of the deployment command
+          if [[ $? -ne 0 ]]; then
+            echo "Deployment failed! Check the workflow logs for details."
+            exit 1
+          fi          
 
     
