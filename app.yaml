@@ -1,26 +1,26 @@
-# deploy the app to gae:flexibl
 service: amazon-seller-ai
 runtime: python311
 env: flex
 
 manual_scaling:
-  instances: 1
+ instances: 1
 resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
+ cpu: 1
+ memory_gb: 0.5
+ disk_size_gb: 10
 
-health_checks:
-  readiness_check:
-    check_interval_sec: 300 
-    timeout_sec: 5          
-    app_health_check:
-      url: /heath-check  
-      expected_response_code: 200
-  liveness_check:
-    check_interval_sec: 300 
-    timeout_sec: 5          
-    app_health_check:
-      url: /heath-check 
-      expected_response_code: 200
+readiness_check:
+ check_interval_sec: 300
+ timeout_sec: 5
+ app_start_timeout_sec: 300
+ path: "/health-check"
+ success_threshold: 2
+ failure_threshold: 2
 
+liveness_check:
+ check_interval_sec: 300
+ timeout_sec: 5
+ initial_delay_sec: 15
+ path: "/health-check"
+ success_threshold: 2
+ failure_threshold: 2
