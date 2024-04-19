@@ -42,6 +42,13 @@ jobs:
         run: terraform apply -auto-approve -input=false
         env:
               GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_SA_CREDS }}
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json:  ${{ secrets.GOOGLE_SA_CREDS }}
+            
+      - name: Set Google OAuth Access Token
+        run: echo "GOOGLE_OAUTH_ACCESS_TOKEN=${{ steps.auth.outputs.access_token }}" >> $GITHUB_ENV               
                        
       - name: Login to Artifact Registry
         run: |
@@ -53,14 +60,6 @@ jobs:
             context: .
             push: true
             tags: us-central1-docker.pkg.dev/gcpa-415907/app-engine/amazon_seller_ai:latest
-      
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json:  ${{ secrets.GOOGLE_SA_CREDS }}
-      
-      - name: Set Google OAuth Access Token
-        run: echo "GOOGLE_OAUTH_ACCESS_TOKEN=${{ steps.auth.outputs.access_token }}" >> $GITHUB_ENV 
 
       - name: Deploy to GAE
         run: |
