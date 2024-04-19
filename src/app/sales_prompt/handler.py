@@ -65,7 +65,7 @@ class SalesPromptHandler:
 
         # execute sql query
         results=self.bigquery_manager.execute_query(sql_query)
-        sql_query=str(sql_query.replace('\n', ''))
+        sql_query=str(sql_query.replace('\n', ' '))
 
         print(f"SQL {sql_query} documents")
         response_data = {
