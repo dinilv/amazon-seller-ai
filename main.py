@@ -4,6 +4,7 @@ from src.db.bigquery import BigQueryManager
 from src.db.chroma import ChromaVectorStoreManager 
 from src.utils.dataset_resolver import resolve_all_dataset
 from src.utils.vertex_ai import get_text_embedding
+from flask import jsonify
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -19,6 +20,10 @@ for dataset in datasets:
 @app.route('/seller/<seller_id>/prompt', methods=['POST'])
 def route_handler(seller_id):
     return sp_handler.process(seller_id)
+@app.route('/health-check')
+def health_check():
+  return jsonify({'status': 'healthy'}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
