@@ -22,8 +22,10 @@ def route_handler(seller_id):
     return sp_handler.process(seller_id)
 @app.route('/health-check')
 def health_check():
-  return jsonify({'status': 'healthy'}), 200
-
+    return jsonify({'status': 'healthy'}), 200
+@app.route('/')
+def default():
+    return jsonify({'status': 'healthy'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
