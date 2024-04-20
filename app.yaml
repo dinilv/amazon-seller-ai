@@ -8,19 +8,3 @@ resources:
  cpu: 1
  memory_gb: 0.5
  disk_size_gb: 10
-
-readiness_check:
- check_interval_sec: 300
- timeout_sec: 30
- app_start_timeout_sec: 300
- path: "/health-check"
- success_threshold: 2
- failure_threshold: 2
-
-liveness_check:
- check_interval_sec: 300
- timeout_sec: 30
- initial_delay_sec: 30
- path: "/health-check"
- success_threshold: 2
- failure_threshold: 2
