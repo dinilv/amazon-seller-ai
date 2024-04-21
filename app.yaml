@@ -15,7 +15,7 @@ resources:
 
 readiness_check:
  check_interval_sec: 300
- timeout_sec: 30
+ timeout_sec: 90
  app_start_timeout_sec: 300
  path: "/health-check"
  success_threshold: 2

@@ -8,7 +8,6 @@ WORKDIR /app
 COPY requirements.txt ./
 
 # Install dependencies using pip
-RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copy your application code
