@@ -17,3 +17,11 @@ readiness_check:
  success_threshold: 2
  failure_threshold: 2
 
+include:
+  - src
+
+handlers:
+  - url: /.*
+    script: main.py
+
+
