@@ -1,10 +1,6 @@
 service: amazon-seller-ai
-runtime: python311
+runtime: custom
 env: flex
-
-handlers:
-  - url: /.*
-    script: main.py
 
 manual_scaling:
  instances: 1
@@ -12,13 +8,4 @@ resources:
  cpu: 1
  memory_gb: 0.5
  disk_size_gb: 10
-
-readiness_check:
- check_interval_sec: 300
- timeout_sec: 90
- app_start_timeout_sec: 300
- path: "/health-check"
- success_threshold: 2
- failure_threshold: 2
-
 
