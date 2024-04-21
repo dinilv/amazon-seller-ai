@@ -1,8 +1,6 @@
 service: amazon-seller-ai
 runtime: python311
 env: flex
-include:
-  - src
 
 handlers:
   - url: /.*
