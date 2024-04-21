@@ -5,8 +5,10 @@ from src.db.chroma import ChromaVectorStoreManager
 from src.utils.dataset_resolver import resolve_all_dataset
 from src.utils.vertex_ai import get_text_embedding
 from flask import jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 bq_manager=BigQueryManager()
 chroma_vector_store=ChromaVectorStoreManager()
